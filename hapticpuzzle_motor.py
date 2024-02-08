@@ -35,14 +35,16 @@ class Motor():
         print('pos:', self.pos, 'vel:', self.vel, 'acc:', self.acc)
 
     def threshold(self, power):
-        thresh = 1
-        slope = 3
-        if abs(power) < thresh:
+        threshx = 0.1
+        threshy = 3
+        slope = threshy / threshx
+        outside_slope = (10 - threshy) / (10 - threshx)
+        if abs(power) < threshx:
             voltage = slope * power
-        elif power >= thresh:
-            voltage = (power - thresh) + (slope * thresh)
-        elif power <= -1 * thresh:
-            voltage = (power + thresh) - (slope * thresh)
+        elif power >= threshx:
+            voltage = outside_slope * (power - threshx) + threshy
+        elif power <= -1 * threshx:
+            voltage = outside_slope * (power + threshx) - threshy
         return voltage
 
     def update_pwm(self):
