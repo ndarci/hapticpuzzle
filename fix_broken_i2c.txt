@@ -1,0 +1,16 @@
+the problem: i2c throws a bunch of errors then stops working, can't even see devices with i2cdetect and it takes forever (times out on every request)
+in bash...
+
+i2cdetect -y 1      // verify this runs slow and has no addresses
+
+* unplug breadboard
+
+pinctrl             // verify SCL pin is low
+pinctrl set 3 op    // set SCL as output
+pinctrl set 3 pu    // set pullup resistor on SCL pin
+pinctrl set 3 a0    // reset SCL to i2c pin 
+pinctrl             // verify SCL pin is high now
+
+* plug breadboard back in
+
+i2cdetect -y 1      // verify this runs fast and has all your addresses

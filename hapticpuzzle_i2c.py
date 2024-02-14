@@ -47,6 +47,7 @@ class Slider(Peripheral):
             self.bus.readfrom_into(self.address, buffer)
         except Exception as e:
             print("read error:", e)
+        
         # unlock the bus
         self.bus.unlock()
         # mask to 10 bits and convert to int

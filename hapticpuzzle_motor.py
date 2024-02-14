@@ -18,8 +18,8 @@ class Motor():
         self.pos = 0
         self.vel = 0
         self.acc = 0
-        self.inertia_offset = 0.01
-        self.friction_offset = -0.1
+        self.inertia_offset = 0.005
+        self.friction_offset = -0.35
         self.sample_period = sample_period
         self.gravity = 1
 
@@ -53,7 +53,7 @@ class Motor():
         # friction component
         newpower += -1 * self.friction_offset * self.vel
         # gravity component
-        newpower += self.gravity
+        # newpower += self.gravity
         self.set_power(newpower)
 
     def __clean_power(self, rawpower):
