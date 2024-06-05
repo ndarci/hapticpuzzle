@@ -1,23 +1,17 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import time
+from hapticpuzzle_plot import *
 
-fig, axs = plt.subplots(3)
 
-pline, = axs[0].plot(np.random.randn(100), 'tab:blue')
-axs[0].set_title('Position')
-vline, = axs[1].plot(np.random.randn(100), 'tab:green')
-axs[1].set_title('Velocity')
-aline, = axs[2].plot(np.random.randn(100), 'tab:orange')
-axs[2].set_title('Acceleration')
-fig.tight_layout()
+fig,axs,lines,data = generate_axes(['pos','vel','acc'],100)
 
 while True:
     try:
-        pline.set_ydata(np.random.randn(100))
-        vline.set_ydata(np.random.randn(100))
-        aline.set_ydata(np.random.randn(100))
-        plt.pause(0.01)
+        #idea here is to grab one data point for pos,vel, and acc from the rpi,
+        #then send this data into our update plot function to display in real time
+
+        update_plot(lines,data,np.random.randn(3))
     except KeyboardInterrupt:
         break
 
