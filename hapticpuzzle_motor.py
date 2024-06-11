@@ -74,6 +74,7 @@ class Motor():
         
         if power < 0:
             self.direc_pin.value = 0
+            
         elif power > 0:
             self.direc_pin.value = 1
         
