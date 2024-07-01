@@ -19,9 +19,9 @@ class Motor():
         self.vel = 0
         self.acc = 0
         self.inertia_offset = 0.005
-        self.friction_offset = -0.35
+        self.friction_offset = -0.1
         self.sample_period = sample_period
-        self.gravity = 1
+        self.gravity = 0
 
     def update_vars(self):
         # calculate rates based on previous value
