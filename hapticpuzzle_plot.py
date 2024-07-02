@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def generate_axes(variables, x_range, colors = None):
+def generate_axes(variables, x_range, y_ranges, colors = None):
     #generate default colors
     if not colors:
         color_options = ['blue','green','orange']
@@ -9,7 +9,7 @@ def generate_axes(variables, x_range, colors = None):
         colors = colors[:len(variables)]
 
     #create figure and axis objects
-    fig, axs = plt.subplots(len(variables))
+    fig, axs = plt.subplots(len(variables), figsize=(25,10))
 
     #lines are objects used to set data live
     lines = []
@@ -17,6 +17,7 @@ def generate_axes(variables, x_range, colors = None):
 
     #creating lines for each variable
     for ind,label in enumerate(variables):
+        axs[ind].set_ylim(y_ranges[ind])
         data.append(np.random.randn(x_range))
         line, = axs[ind].plot(data[ind], 'tab:'+colors[ind])
         lines.append(line)
